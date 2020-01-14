@@ -1,0 +1,12 @@
+// routing lib
+yarn add express
+
+// code auto update lib
+// -D: only for dev
+yarn add nodemon -D
+
+// mongoDB cluster access lib
+yarn add mongoose
+
+// github api access lib
+yarn add axios
