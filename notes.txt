@@ -10,3 +10,6 @@ yarn add mongoose
 
 // github api access lib
 yarn add axios
+
+// criar um projeto react na pasta web 
+yarn create react-app web
