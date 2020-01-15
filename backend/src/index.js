@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const routes = require('./routes');
 
 // cria nossa aplicacao
@@ -11,6 +12,9 @@ mongoose.connect('mongodb+srv://omnistack:0ministack@cluster0-bagiw.mongodb.net/
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
+
+// libera o acesso externo
+app.use(cors());
 
 // comunicação será feita via JSON
 app.use(express.json());

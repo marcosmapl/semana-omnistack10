@@ -23,7 +23,7 @@ module.exports = {
       // uso de 'crase' no lugar de 'aspas simples' permite uso de template Strings
       const github_response = await axios.get(`https://api.github.com/users/${github_username}`);
   
-      const { id, name = login, avatar_ulr, html_url, bio, email } = github_response.data; 
+      const { id, name = login, avatar_url, html_url, bio, email } = github_response.data; 
   
       // mongoDB usa primeiro a longitude e depois latitude
       const location = {
@@ -38,7 +38,7 @@ module.exports = {
         name,
         github_username,
         email,
-        avatar_ulr,
+        avatar_url,
         html_url,
         bio,
         location,

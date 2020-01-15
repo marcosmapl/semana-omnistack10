@@ -13,3 +13,6 @@ yarn add axios
 
 // criar um projeto react na pasta web 
 yarn create react-app web
+
+// cross orign resources sharing
+yarn add cors
