@@ -17,8 +17,25 @@ yarn create react-app web
 // cross orign resources sharing
 yarn add cors
 
-// expo
-yarn global add expo
+// expo, //https://github.com/Rocketseat/expo-common-issues  
+yarn global add expo-cli
+
+// put expo on system PATH
+cd ~
+code .bashrc
+export PATH="$(yarn global bin):$PATH"
+
 
 // init expo projeto
 expo init mobile
+
+// starting mobile app
+cd mobile
+yarn start
+
+// installing react-navigation
+expo install react-native-gesture-handler react-native-reanimated react-native-screens react-native-safe-area-context
+
+// add react navigation inside mobile project folder
+yarn add react-navigation react-navigation-stack @react-native-community/masked-view
+
