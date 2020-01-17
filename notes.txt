@@ -16,3 +16,9 @@ yarn create react-app web
 
 // cross orign resources sharing
 yarn add cors
+
+// expo
+yarn global add expo
+
+// init expo projeto
+expo init mobile

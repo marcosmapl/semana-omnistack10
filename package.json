@@ -1,0 +1,9 @@
+{
+  "name": "semana_oministack10",
+  "version": "1.0.0",
+  "description": "ReactJS, React Native, NodeJS app",
+  "main": "index.js",
+  "repository": "https://github.com/marcosmapl/semana_oministack10.git",
+  "author": "marcos.lima@icomp.ufam.edu.br <marcos.lima@icomp.ufam.edu.br>",
+  "license": "MIT"
+}
