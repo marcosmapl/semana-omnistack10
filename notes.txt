@@ -39,3 +39,5 @@ expo install react-native-gesture-handler react-native-reanimated react-native-s
 // add react navigation inside mobile project folder
 yarn add react-navigation react-navigation-stack @react-native-community/masked-view
 
+// webview
+expo install react-native-webview
