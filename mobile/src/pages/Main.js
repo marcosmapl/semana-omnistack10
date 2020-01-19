@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Text, TextInput, TouchableOpacity , Dimensions, Image } from 'react-native';
+import { StyleSheet, View, Text, TextInput, TouchableOpacity, Dimensions, Image } from 'react-native';
 import MapView, { Marker, Callout } from 'react-native-maps';
 import { requestPermissionsAsync, getCurrentPositionAsync } from 'expo-location';
 import { MaterialIcons } from '@expo/vector-icons';
 
+import api from '../services/api'
+
 function Main({ navigation }) {
+
+  const [developers, setDevelopers] = useState([]);
   const [currentRegion, setCurrentRegion] = useState(null);
+  const [techs, setTechs] = useState('');
 
   useEffect(() => {
     async function loadInitialPosition() {
@@ -31,37 +36,81 @@ function Main({ navigation }) {
     loadInitialPosition();
   }, []);
 
+  async function loadDevelopers() {
+    const { latitude, longitude } = currentRegion;
+
+    const response = await api.get('/search', {
+      params: {
+        latitude,
+        longitude,
+        techs,
+        maxDist: 50000,
+      }
+    });
+
+    console.log(response.data);
+
+    setDevelopers(response.data.devs);
+  }
+
+  function handleRegionChange(region) {
+    setCurrentRegion(region);
+  }
+
   if (!currentRegion)
     return null;
-  
+
   return (
     <View style={styles.container}>
-      <MapView initialRegion={currentRegion} style={styles.mapStyle} >
-        <Marker coordinate={{ latitude: -3.1102162, longitude: -59.9852251 }}>
-          <Image style={styles.avatar} source={{ uri: 'https://www.sideshow.com/storage/product-images/903188/bb-8_star-wars_silo.png' }} />
+      <MapView
+        onRegionChangeComplete={handleRegionChange}
+        initialRegion={currentRegion}
+        style={styles.mapStyle}
+      >
+        {developers.map(developer => (
+          <Marker
+            key={developer._id}
+            coordinate={{
+              longitude: developer.location.coordinates[0],
+              latitude: developer.location.coordinates[1]
+            }}
+          >
+            <Image
+              style={styles.avatar}
+              source={{ uri: developer.avatar_url }}
+            />
 
-          <Callout onPress={() => {
-            navigation.navigate('Profile', { github_username: 'marcosmapl' });
-          }}>
-            <View style={styles.callout}>
-              <Text style={styles.developerName}>Marcos Lima</Text>
-              <Text style={styles.developerBio}>Computer Science Student ar Federal University of Amazonas</Text>
-              <Text style={styles.developerTechs}>Python, Java, C, SQL</Text>
-            </View>
-          </Callout>
-        </Marker>
+            <Callout onPress={() => {
+              navigation.navigate('Profile', { github_username: developer.github_username });
+            }}>
+              <View style={styles.callout}>
+                <Text style={styles.developerName}>{developer.name}</Text>
+                <Text style={styles.developerBio}>{developer.bio}</Text>
+                <Text style={styles.developerTechs}>{developer.techs.join(', ')}</Text>
+              </View>
+            </Callout>
+          </Marker>
+        ))}
       </MapView>
       <View style={styles.searchForm}>
-          <TextInput
-            style={styles.searchInput}
-            placeholder='Buscar Devs por Tecnologia...'
-            placeholderTextColor= '#999'
-            autoCapitalize='words'
-            autoCorrect={false}
+        <TextInput
+          style={styles.searchInput}
+          placeholder='Buscar Devs por Tecnologia...'
+          placeholderTextColor='#999'
+          autoCapitalize='words'
+          autoCorrect={false}
+          onChangeText={setTechs}
+        />
+        <TouchableOpacity
+          onPress={loadDevelopers}
+          style={styles.loadButton}
+        >
+          <MaterialIcons
+            name='my-location'
+            size={20}
+            color='#FFF'
           />
-          <TouchableOpacity onPress={() => {}} style={styles.loadButton}> 
-            <MaterialIcons name='my-location' size={20} color='#FFF'/>
-          </TouchableOpacity>
+        </TouchableOpacity>
       </View>
     </View>
   );
