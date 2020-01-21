@@ -7,12 +7,21 @@ import { MaterialIcons } from '@expo/vector-icons';
 import api from '../services/api';
 import { connect, disconnect, subscribeToNewDevepelopers } from '../services/socket';
 
+/**
+ * App Main route (screen)
+ */
 function Main({ navigation }) {
 
+  // array of developers to show on map
   const [developers, setDevelopers] = useState([]);
+  // mobile phone current regions
   const [currentRegion, setCurrentRegion] = useState(null);
+  // string of all desired techs
   const [techs, setTechs] = useState('');
 
+  /**
+   * loads mobile phone initial position if allowed by the user
+   */
   useEffect(() => {
     async function loadInitialPosition() {
       const { granted } = await requestPermissionsAsync();
@@ -37,10 +46,18 @@ function Main({ navigation }) {
     loadInitialPosition();
   }, []);
 
+  /**
+   * handler function for event 'new-developer'
+   * updates developers array with the new developers in search area
+   */
   useEffect(() => {
     subscribeToNewDevepelopers(dev => setDevelopers([...developers, dev]));
   }, [developers]);
 
+  /**
+   * connects the client with banckend websocket server
+   * informs to backend our search area and desired technologies
+   */
   function setupWebSocket() {
     disconnect();
 
@@ -53,9 +70,15 @@ function Main({ navigation }) {
     );
   }
 
+  /**
+   * search for all developers into the search area with that have desired techs
+   */
   async function loadDevelopers() {
+
+    // gets mobile phone position
     const { latitude, longitude } = currentRegion;
 
+    // sends a search request to backend,
     const response = await api.get('/search', {
       params: {
         latitude,
@@ -65,10 +88,19 @@ function Main({ navigation }) {
       }
     });
 
+    // updates developers array with data returned from backend
     setDevelopers(response.data.devs);
+
+    // after a search we need to keep listening the backend 'new-developer' event
+    // and when a new developer is register in our search area, the developer
+    // needs to be put into map
     setupWebSocket();
   }
 
+  /**
+   * handler method for 'onRegionChangeComplete' event
+   * it updates our current region 'state'
+   */
   function handleRegionChange(region) {
     setCurrentRegion(region);
   }
@@ -177,7 +209,7 @@ const styles = StyleSheet.create({
     left: 10,
     right: 20,
     zIndex: 5,
-    // display: 'flex'; eh o padrão
+    // display: 'flex'; it's default value
     flexDirection: 'row',
   },
 

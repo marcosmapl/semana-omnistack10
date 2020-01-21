@@ -3,12 +3,14 @@ import { StatusBar, YellowBox } from 'react-native';
 
 import Routes from './src/routes';
 
-// ignore yellow box warning when the client connects with server
-// TODO: fix ti
+// FIXME: ignore yellow box warning when the client connects with server
 YellowBox.ignoreWarnings([
   'Unrecognized WebSocket connection',
 ]);
 
+/**
+ * Creates mobile app
+ */
 export default function App() {
   return (
     <>

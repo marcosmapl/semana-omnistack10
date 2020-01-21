@@ -1,17 +1,28 @@
 import socketio from 'socket.io-client';
 
-// creates a new websocket client for backend server
-// autoConnect false to avoid client auto connect when app starts
-const socket = socketio('http://192.168.0.56:3333', {
+/**
+ * Creates a new websocket client for backend server
+ * autoConnect - 'false' to avoid client auto connect when app starts
+ * If running via an emulator and your backend is running in a differente server
+ * change {baseURL} to backend network address
+ * If running into a mobile phone check if your phone have access to backend server
+ */
+const socket = socketio('http://localhost:3333', {
   autoConnect: false,
 });
 
+/**
+ * binds a event listener function (subscribeFunction) to 'new-developer' event
+ * 'new-developer' event is fired by backend when a new developer was registered
+ */
 function subscribeToNewDevepelopers(subscribeFunction) {
   socket.on('new-developer', subscribeFunction);
 }
 
-// create a new connection with websocket server
-// sends to server the mobile app current region and searched techs
+/**
+ * Connects with backend
+ * Sends mobile phone current position and desired techs for search
+ */
 function connect(latitude, longitude, techs) {
   socket.io.opts.query = {
     latitude,
@@ -22,14 +33,15 @@ function connect(latitude, longitude, techs) {
   socket.connect();
 }
 
-// if the client is connected, then disconnect to serve
+/**
+ * If the mobile phone is connected with backend, then close the connection
+ */
 function disconnect() {
   if (socket.connected) {
     socket.disconnect();
   }
 }
 
-// exports only the funcionst to encapsulate our client connection method 
 export {
   connect,
   disconnect,
