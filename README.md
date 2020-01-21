@@ -1,31 +1,54 @@
 # Dev Radar
-> Mobile search tool for Developers near your area that use some required technologies.
 
-[![NPM Version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
-[![Downloads Stats][npm-downloads]][npm-url]
+> Tool for find Developers that are 10 KM near of a search area and use some required technologies.
 
-One to two paragraph statement about your product and what it does.
+> \#semanaomnistack \#rocketseat \#Node.js \#ReactJST \#ReactNative \#MongoDB \#express \#axios \#socket.io
+
+This project was developed during the *10th OmniStack Week* promoted by *Rocketseat*, whose objective was to present the Node.js, ReactJS and React Native technologies, developing a complete application (Back-end, Front-end and Mobile) from zero.
+
+Back-end was built using Node.js and Express. It makes use of the MongoDB database through the Mongoose (data model objects). Axios was used for HTTP requests and JSON protocol is used for data trade. GitHub API is used for obtain some informations about the developer (Avatar, Bio, Name, Location). And for real-time communication between the Back-end and all clients, Socket.io was used.
+
+Frontend is a web application made in ReactJS. It allows the registration of developers on the platform, informing his GitHub username, all technologies he uses and his latitude and longitude. Displays a list of all developers registered on the platform.
+
+The Mobile application was developed using React Native and Expo (for build and deploy for iOS and Android). It displays a map (Google Map) for choosing a initial location for search and a input field where the desired technologies must be inserted. After the search, all developers, within a radius of 10 km, who use any of the desired technologies, are displayed on the map.
 
 ![](header.png)
 
-## Installation
-
-OS X & Linux:
-
-```sh
-npm install my-crazy-module --save
-```
-
-Windows:
-
-```sh
-edit autoexec.bat
-```
-
 ## Usage example
 
-A few motivating and useful examples of how your product can be used. Spice this up with code blocks and potentially more screenshots.
+## Running Back-end
+
+To run Back-end application, navigate to 'backend/' folder and run the command:
+
+```sh
+yarn dev
+```
+
+and wait Nodemon puts application up.
+
+## Running Front-end
+
+To run Front-end web application, navigate to 'web/' folder and run the command:
+
+```sh
+yarn start
+```
+
+and wait until compilation ends. 
+
+After it the web application will appears in a tab on your default web browser. Otherwise, open your browser and access `http://localhost:3333/`
+
+## Running Mobile App
+
+To run Mobile App we use `Expo`, navigate to 'web/' folder and run the command:
+
+```sh
+yarn start
+```
+
+and wait until compilation ends. 
+
+After it the web application will appears in a tab on your default web browser. Otherwise, open your browser and access `http://localhost:3333/`
 
 _For more examples and usage, please refer to the [Wiki][wiki]._
 
@@ -40,39 +63,29 @@ npm test
 
 ## Release History
 
-* 0.2.1
-    * CHANGE: Update docs (module code remains unchanged)
-* 0.2.0
-    * CHANGE: Remove `setDefaultXYZ()`
-    * ADD: Add `init()`
-* 0.1.1
-    * FIX: Crash when calling `baz()` (Thanks @GenerousContributorName!)
-* 0.1.0
-    * The first proper release
-    * CHANGE: Rename `foo()` to `bar()`
 * 0.0.1
     * Work in progress
 
 ## Meta
 
-Your Name – [@YourTwitter](https://twitter.com/dbader_org) – YourEmail@example.com
+Marcos Lima – [@marcosmapl](linkedin.com/in/marcosmapl) – marcos.lima@icomp.ufam.edu.br
 
-Distributed under the XYZ license. See ``LICENSE`` for more information.
+[See project on GitHub](https://github.com/marcosmapl/semana-oministack10/)
 
-[https://github.com/yourname/github-link](https://github.com/dbader/)
+## License
+
+[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
+
+- **[MIT license](http://opensource.org/licenses/mit-license.php)**
+- Copyright 2015 © <a href="http://fvcproductions.com" target="_blank">FVCproductions</a>.
 
 ## Contributing
 
-1. Fork it (<https://github.com/yourname/yourproject/fork>)
+1. Fork it (<https://github.com/marcosmapl/semana-oministack10/>)
 2. Create your feature branch (`git checkout -b feature/fooBar`)
 3. Commit your changes (`git commit -am 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)
 5. Create a new Pull Request
 
 <!-- Markdown link & img dfn's -->
-[npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/datadog-metrics
-[npm-downloads]: https://img.shields.io/npm/dm/datadog-metrics.svg?style=flat-square
-[travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg?style=flat-square
-[travis-url]: https://travis-ci.org/dbader/node-datadog-metrics
-[wiki]: https://github.com/yourname/yourproject/wiki
+[wiki]: https://github.com/marcosmapl/semana-oministack10/wiki
