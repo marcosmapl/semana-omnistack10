@@ -1,9 +1,12 @@
+// converts 'degres' to 'radians'
 function deg2rad(deg) {
   return deg * (Math.PI / 180);
 }
 
-// calculates distance in km of two given coordinates using Haversine Formula
-// https://en.wikipedia.org/wiki/Haversine_formula
+/**
+ * Calculates distance in km of two given coordinates using Haversine Formula
+ * @see https://en.wikipedia.org/wiki/Haversine_formula
+ */
 module.exports = function getDistanceFromLatLonInKm(
   centerCoordinates,
   pointCoordinates

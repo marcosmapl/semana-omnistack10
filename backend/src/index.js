@@ -1,5 +1,5 @@
 /**
- * Back-end Start Point
+ * Backend Project
  * Creates a new Express Application
  * Establish a new database connection using Mongoose
  * Allows external access from any origin via CORS
@@ -27,7 +27,7 @@ const { setupWebsocket } = require('./websocket');
 // create a new express application
 const app = express();
 
-// gets HTTP server from Express Application
+// gets HTTP server for real-time bidirectional communication
 const server = http.Server(app);
 // call a function to configure our websocket server
 setupWebsocket(server);

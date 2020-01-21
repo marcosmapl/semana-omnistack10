@@ -2,6 +2,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const PointSchema = require('./utils/Point');
 
+/**
+ * Developer Model Object
+ */ 
 const DeveloperSchema = new Schema({
   github_id: Schema.Types.String,
   name: Schema.Types.String,
