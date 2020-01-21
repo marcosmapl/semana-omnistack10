@@ -5,6 +5,9 @@ yarn add express
 // -D: only for dev
 yarn add nodemon -D
 
+// ubuntu 18.04 allow external access to backend port 3333
+sudo iptables -I INPUT 1 -p tcp --dport 3000 -j ACCEPT
+
 // mongoDB cluster access lib
 yarn add mongoose
 
@@ -41,3 +44,11 @@ yarn add react-navigation react-navigation-stack @react-native-community/masked-
 
 // webview
 expo install react-native-webview
+
+// on backend project
+// to create websocket servers
+yarn add socket.io
+
+// on mobile project
+// to create websocket clients
+yarn add socket.io-client

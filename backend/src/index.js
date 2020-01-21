@@ -1,27 +1,55 @@
+/**
+ * Back-end Start Point
+ * Creates a new Express Application
+ * Establish a new database connection using Mongoose
+ * Allows external access from any origin via CORS
+ * Define JSON format for data transfer
+ * Sets application routes (endpoints)
+ */
+
+// express for routing
 const express = require('express');
+
+// mongoose for create a data object model to access MongoDB
 const mongoose = require('mongoose');
+
+// express cross-origin resource sharing module
 const cors = require('cors');
+
+// http module
+const http = require('http');
+
+// express routing module
 const routes = require('./routes');
 
-// cria nossa aplicacao
+const { setupWebsocket } = require('./websocket');
+
+// create a new express application
 const app = express();
 
-// conecta com o banco de dados cloud
+// gets HTTP server from Express Application
+const server = http.Server(app);
+// call a function to configure our websocket server
+setupWebsocket(server);
+
+
+// calls creatIndex for each defined index in our schema
 mongoose.set('useCreateIndex', true);
+
+// create a database connection
 mongoose.connect('mongodb+srv://omnistack:0ministack@cluster0-bagiw.mongodb.net/test?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
 
-// libera o acesso externo
+// allows access from any origin
 app.use(cors());
 
-// comunicação será feita via JSON
+// use JSON for data trade
 app.use(express.json());
 
-// usa o arquivo de rotas
+// set our aplication routes (endpoints)
 app.use(routes);
 
-// seleciona a porta da aplicação
-// localhost:33333/
-app.listen(3333);
+// starts out aplication on port 3333
+server.listen(3333);
