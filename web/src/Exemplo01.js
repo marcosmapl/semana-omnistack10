@@ -1,13 +1,16 @@
 import React, {useState} from 'react';
 import Header from './Header';
+
 /*
-  Conceitos principais do React
-    * Componente: Bloco isolado e autônomo de algum tipo de conteúdo (HTML, CSS, JS)
-    * Propriedade: Atributos de um compontente
-    * Estado: Informações mantidas pelo componente (Lembrar: imutabilidade)
+  Example of principals concepts about React
+    * Component: Isolated and autonomous block of some content (HTML, CSS, JS)
+    * Property: Component atributes
+    * State: Component informatios (note: are immutable)
 */
 function Exemplo01() {
-  // useState retorna uma variável e uma função para atualizar seu estado
+  
+  // useState - creates a new immutable variable (component state)
+  // and a function to update it value when necessary
   const [counter, setCounter] = useState(0);
 
   function incrementCounter() {
@@ -15,7 +18,7 @@ function Exemplo01() {
   }
   
   return (
-    // <> ... </> 'fragments', containers de componentes
+    // <> ... </> 'fragments', container of components
     <>
       <Header title="Meu Painel 09"/>
       <Header title="Meu Painel 01"/>

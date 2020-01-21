@@ -2,6 +2,9 @@ import React from 'react';
 
 import './styles.css';
 
+/**
+ * Developer Component
+ */
 function DeveloperItem({ dev }) {
   return (
     <li className="dev-item">

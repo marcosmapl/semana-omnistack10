@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
+/**
+ * New Developer Register Form Component
+ */
 function DeveloperForm({ onSubmit }) {
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
@@ -8,6 +11,7 @@ function DeveloperForm({ onSubmit }) {
 
   // useEffect allows execute, only once, 'getCurrentPosition' function when App is loaded.
   useEffect(() => {
+    // request user geolocation position and fill latitude and longitude input boxes
     navigator.geolocation.getCurrentPosition(
       (position) => {
         console.log(position);
@@ -25,9 +29,12 @@ function DeveloperForm({ onSubmit }) {
     );
   }, []);
 
+  // handler method for onSubmit event
   async function handleSubmit(e) {
     e.preventDefault();
 
+    // calls 'onSubmit' function assigned to this component
+    // passing new developer data
     await onSubmit({
       github_username,
       techs,
