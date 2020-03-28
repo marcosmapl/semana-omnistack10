@@ -25,4 +25,8 @@ routes.post('/developers', DeveloperController.store);
 // bind route GET '/search' to controller 'index' (list all) function
 routes.get('/search', SearchController.index);
 
+routes.get('/test', function (req, res) {
+  return res.json('Olá!');
+});
+
 module.exports = routes;
